@@ -5,12 +5,13 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom"; // ✅ Added for SPA navigation
 
 const navLinks = [
-  { label: "", href: "#treatments" },
-  { label: "", href: "#stories" },
-  { label: "", href: "#inspiration" },
-  { label: "", href: "#about" },
+  { label: "Treatments", href: "#treatments" },
+  { label: "Stories", href: "#stories" },
+  { label: "Inspiration", href: "#inspiration" },
+  { label: "About", href: "#about" },
 ];
 
 const sideMenuLinks = [
@@ -124,9 +125,9 @@ export default function SiteHeader() {
             </button>
           </div>
           <div className="text-center pt-8">
-            <a href="#" className="text-sm text-neutral-500 hover:text-neutral-700 underline underline-offset-4 transition-colors duration-300">
+            <Link to="#" className="text-sm text-neutral-500 hover:text-neutral-700 underline underline-offset-4 transition-colors duration-300">
               Forgotten your password?
-            </a>
+            </Link>
           </div>
         </div>
       );
@@ -238,26 +239,26 @@ export default function SiteHeader() {
             <HamburgerIcon />
             <nav className="hidden lg:flex items-center gap-8 xl:gap-12">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   className="group text-xs uppercase tracking-[0.30em] font-medium text-neutral-800 hover:text-neutral-950 transition-colors duration-300"
                 >
                   {link.label}
                   <span className="block h-px w-0 bg-neutral-900 mt-1 group-hover:w-full transition-all duration-700 ease-out" />
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
 
           {/* Center - logo */}
           <div className="flex justify-center items-center">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="font-serif text-4xl sm:text-4.5xl md:text-5xl lg:text-[3.3rem] xl:text-[3.5rem] font-light tracking-[-0.065em] text-neutral-950 select-none"
             >
               WRP
-            </a>
+            </Link>
           </div>
 
           {/* Right section */}
@@ -297,6 +298,9 @@ export default function SiteHeader() {
             "pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
           )}
         >
+          <VisuallyHidden>
+            <SheetTitle>Mobile Menu</SheetTitle>
+          </VisuallyHidden>
           <div className="flex flex-col h-full">
             <div className="flex-1 overflow-hidden">
               <div className="h-full overflow-y-auto px-8 sm:px-10 pt-14 pb-10">
@@ -306,9 +310,9 @@ export default function SiteHeader() {
 
                 <nav className="space-y-5 md:space-y-6 pb-10">
                   {sideMenuLinks.map((link) => (
-                    <a
+                    <Link
                       key={link.label}
-                      href={link.href}
+                      to={link.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
                         "group block py-3.5 px-4 rounded-xl transition-all duration-500",
@@ -334,7 +338,7 @@ export default function SiteHeader() {
                           {link.count}
                         </span>
                       </div>
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </div>
@@ -343,15 +347,15 @@ export default function SiteHeader() {
             <div className="shrink-0 border-t border-neutral-100/30 bg-white/10 backdrop-blur-md">
               <div className="px-8 py-6 md:px-10 md:py-8">
                 <div className="flex flex-wrap justify-center gap-5 md:gap-8 mb-4 text-xs tracking-wide font-light text-neutral-500">
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-800 transition-colors">
+                  <Link to="#" className="hover:text-neutral-800 transition-colors">
                     Instagram
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-800 transition-colors">
+                  </Link>
+                  <Link to="#" className="hover:text-neutral-800 transition-colors">
                     Twitter
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-neutral-800 transition-colors">
+                  </Link>
+                  <Link to="#" className="hover:text-neutral-800 transition-colors">
                     Facebook
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="text-center text-[8px] text-neutral-400 tracking-widest font-light uppercase">
